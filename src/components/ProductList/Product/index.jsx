@@ -5,13 +5,13 @@ const Product = (props) => {
   const { _id, productName, image, mrp, price, unit } = props.data;
 
   return (
-    <div class="col-sm-4">
-      <div class="card">
+    <div className="col-sm-4">
+      <div className="card">
         <img src={Constants.IMAGE_URL + image} 
-        class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">{productName}</h5>
-          <p class="card-text">{unit}</p>
+        className="card-img-top" alt="..." />
+        <div className="card-body">
+          <h5 className="card-title">{productName}</h5>
+          <p className="card-text">{unit}</p>
           <h2>
             <span>&#8377;</span>
             {price}
@@ -25,7 +25,7 @@ const Product = (props) => {
               </del>
             </span>
           </h2>
-          <Link to={ '/products/detail/'+ _id } class="btn btn-primary btn-block">
+          <Link to={ '/products/detail/'+ _id } className="btn btn-primary btn-block">
             Show Detail
           </Link>
         </div>

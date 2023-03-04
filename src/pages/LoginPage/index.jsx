@@ -4,8 +4,12 @@ import { useFormik, Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Link } from "react-router-dom";
 import Endpoints from "../../api/Endpoints";
+import { useNavigate } from "react-router-dom";
+import styles from './styles.module.css';
 
 const LoginPage = () => {
+  const navigate = useNavigate()
+
   const [requestResponse, setRequestResponse] = useState({
     textMessage: "",
     className: "",
@@ -29,6 +33,7 @@ const LoginPage = () => {
             textMessage: 'login success, thank you',
             className: "alert alert-success",
           });
+          navigate('/')
         },
         (error) => {
           setRequestResponse({
@@ -52,10 +57,13 @@ const LoginPage = () => {
 
   return (
     <div className="container">
+        <Link to="/">
+        <h2 className={styles.logo}> Grocery App</h2>
+      </Link>
       <div className="row">
         <div className="col-lg-3"></div>
         <div className="col-lg-6">
-          <div className="wrapper">
+          <div className={ styles.wrapper }>
             <div className={requestResponse.className} role="alert">
               {requestResponse.textMessage}
             </div>
@@ -87,7 +95,7 @@ const LoginPage = () => {
                     <div className="form-group">
                       <label htmlFor="password">Password</label>
                       <Field                      
-                        type="text"
+                        type="password"
                         name="password"
                         className="form-control"
                       />

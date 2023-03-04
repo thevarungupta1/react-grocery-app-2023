@@ -1,10 +1,10 @@
 import React from "react";
-import "./styles.css";
 import axios from "axios";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import Endpoints from "../../api/Endpoints";
+import styles from "./styles.module.css";
 
 const RegisterPage = () => {
   // initalValues
@@ -81,10 +81,13 @@ const RegisterPage = () => {
 
   return (
     <div className="container">
+      <Link to="/">
+        <h2 className={styles.logo}> Grocery App</h2>
+      </Link>
       <div className="row">
         <div className="col-md-3"></div>
         <div className="col-md-6">
-          <div className="wrapper">
+          <div className={styles.wrapper}>
             <h2>Register</h2>
             <hr />
             <form onSubmit={formik.handleSubmit}>

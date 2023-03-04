@@ -12,7 +12,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
         ...state,
       };
     case ActionTypes.ADD_CART:
-      if (state.numberCart == 0) {
+      if (state.numberCart === 0) {
         let item = {
           ...payload,
           quanity: 1,
@@ -56,12 +56,12 @@ export const cartReducer = (state = initialState, { type, payload }) => {
       };
 
     case ActionTypes.DELETE_CART:
-      let quantity = state.Carts[payload].quanity;
+      //let quantity = state.Carts[payload].quanity;
       return {
         ...state,
         numberCart: state.numberCart - quanity,
         Carts: state.Carts.filter((item) => {
-          return item._id != state.Carts[payload]._id;
+          return item._id !== state.Carts[payload]._id;
         }),
       };
     default:

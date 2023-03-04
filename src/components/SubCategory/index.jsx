@@ -20,9 +20,9 @@ const SubCategory = () => {
   return (
     <div>
       <h2>{ catName }</h2>
-      <ul class="list-group">
+      <ul className="list-group">
         {subCategories.map((subCategory, index) => (
-          <li class="list-group-item" key={index}>
+          <li className="list-group-item" key={index}>
             {subCategory.subName}
           </li>
         ))}

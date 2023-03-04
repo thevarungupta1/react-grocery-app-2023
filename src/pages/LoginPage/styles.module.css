@@ -1,6 +1,11 @@
+.logo{
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-decoration: none;
+  text-align: center;
+}
 .wrapper {
   background-color: #fff;
-  margin-top: 75px;
   border-radius: 10px;
   padding: 30px 40px;
   box-shadow: 5px 10px #888;

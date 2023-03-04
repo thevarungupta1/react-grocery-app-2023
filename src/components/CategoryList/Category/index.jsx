@@ -4,16 +4,16 @@ import Constants from "../../../api/Constants";
 const Category = (props) => {
   const { catId, catName, catImage } = props.data;
   return (
-    <div class="col-sm-3">
-      <div class="card">
+    <div className="col-sm-3">
+      <div className="card">
         <img
           src={Constants.IMAGE_URL + catImage}
-          class="card-img-top"
+          className="card-img-top"
           alt="..."
         />
-        <div class="card-body">
-          <h5 class="card-title">{catName}</h5>
-          <Link to={'/products/'+ catId+ '/'+ catName} class="btn btn-primary btn-block">
+        <div className="card-body">
+          <h5 className="card-title">{catName}</h5>
+          <Link to={'/products/'+ catId+ '/'+ catName} className="btn btn-primary btn-block">
             Select
           </Link>
         </div>
