@@ -1,9 +1,31 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Constants from "../../../api/Constants";
+import { ActionTypes } from "../../../redux/constants/action-types";
+import {
+  addToCart,
+  decreaseQuantity,
+  deleteFromCart,
+} from "../../../redux/actions/cart-actions";
 
 const CartItems = () => {
-  const { Carts, numberCart } = useSelector((state) => state);
+  const dispatch = useDispatch();
+
+  const { Carts, numberCart, cartTotalQuantity, cartTotalAmount } = useSelector(
+    (state) => state
+  );
+
+  const onIncreaseHandler = (item) => {
+    dispatch(addToCart(item));
+  };
+
+  const onDecreaseHandler = (item) => {
+    dispatch(decreaseQuantity(item));
+  };
+
+  const onRemoveHandler = (item) => {
+    dispatch(deleteFromCart(item));
+  };
   return (
     <div style={{ backgroundColor: "#fff", padding: "20px" }}>
       <h2 className="text-center">Your Cart ({numberCart} items)</h2>
@@ -26,6 +48,8 @@ const CartItems = () => {
                   className="img-thumbnail"
                   style={{ width: "120px" }}
                 />
+                <br />
+                <a onClick={() => onRemoveHandler(item)}>remove</a>
               </td>
               <td>
                 <h3>{item.productName}</h3>
@@ -50,7 +74,25 @@ const CartItems = () => {
                 </h2>
               </td>
               <td>
-                <h2>{item.quanity}</h2>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onClick={() => onIncreaseHandler(item)}
+                  >
+                    +
+                  </button>
+                  <button type="button" class="btn btn-secondary">
+                    {item.quanity}
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    onClick={() => onDecreaseHandler(item)}
+                  >
+                    -
+                  </button>
+                </div>
               </td>
               <td>
                 <h2>

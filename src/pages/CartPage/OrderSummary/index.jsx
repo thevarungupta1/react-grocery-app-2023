@@ -1,32 +1,34 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getCartTotal } from "../../../redux/actions/cart-actions";
 
 const OrderSummary = () => {
-  const { Carts } = useSelector((state) => state);
+  const { cartTotalQuantity, cartTotalAmount } = useSelector((state) => state);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getCartTotal());
+  }, [cartTotalAmount]);
 
   return (
     <div
       style={{ backgroundColor: "#fff", padding: "20px", marginTop: "20px" }}
     >
-      <h4>Order Summary</h4>
-      <table className="table">
-        <tr>
-          <td>Subtotal:</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td>Discount:</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td>Coupon Code:</td>
-          <td>0</td>
-        </tr>
-        <tr>
-          <td>To Pay</td>
-          <td>0</td>
-        </tr>
-      </table>
+      <div className="row">
+        <div className="col-md-6">
+          <h4>SubTotal: </h4>
+        </div>
+        <div className="col-md-6 text-right">
+          <h4>
+            {" "}
+            <span>&#8377;</span> {cartTotalAmount}
+          </h4>
+        </div>
+      </div>      
+      <p style={{ color: "#999", textAlign: "center", marginTop: '10px'}}>
+        Checkout to make the payment
+      </p>
       <button className="btn btn-primary btn-block">Checkout</button>
     </div>
   );
