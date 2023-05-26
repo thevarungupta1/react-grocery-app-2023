@@ -7,8 +7,10 @@ import {
   decreaseQuantity,
   deleteFromCart,
 } from "../../../redux/actions/cart-actions";
+import { getCartTotal } from "../../../redux/actions/cart-actions";
 
 const CartItems = () => {
+  
   const dispatch = useDispatch();
 
   const { Carts, numberCart, cartTotalQuantity, cartTotalAmount } = useSelector(
@@ -17,15 +19,15 @@ const CartItems = () => {
 
   const onIncreaseHandler = (item) => {
     dispatch(addToCart(item));
+    dispatch(getCartTotal())
   };
 
   const onDecreaseHandler = (item) => {
     dispatch(decreaseQuantity(item));
+    dispatch(getCartTotal())
   };
 
-  const onRemoveHandler = (item) => {
-    dispatch(deleteFromCart(item));
-  };
+ 
   return (
     <div style={{ backgroundColor: "#fff", padding: "20px" }}>
       <h2 className="text-center">Your Cart ({numberCart} items)</h2>
@@ -48,8 +50,7 @@ const CartItems = () => {
                   className="img-thumbnail"
                   style={{ width: "120px" }}
                 />
-                <br />
-                <a onClick={() => onRemoveHandler(item)}>remove</a>
+               
               </td>
               <td>
                 <h3>{item.productName}</h3>
